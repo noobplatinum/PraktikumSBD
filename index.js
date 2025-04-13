@@ -37,6 +37,10 @@ app.use('/user', require('./src/routes/user.route'));
 app.use('/item', require('./src/routes/item.route'));
 app.use('/transaction', require('./src/routes/transaction.route'));
 
+app.get('/', (req, res) => {
+    res.send('Hello World');
+  });
+  
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     }
