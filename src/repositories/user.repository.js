@@ -69,7 +69,7 @@ exports.deleteUser = async (id) => {
 
 exports.topUpUserBalance = async (id, amount) => {
     try {
-        await db.query('BEGIN'); // Agar bisa rollback
+        await db.query('BEGIN'); 
         const currentUser = await db.query(
             'SELECT * FROM users WHERE id = $1',
             [id]
@@ -80,7 +80,6 @@ exports.topUpUserBalance = async (id, amount) => {
         }
         const currentBalance = currentUser.rows[0].balance || 0;
         const newBalance = currentBalance + parseInt(amount, 10);
-        // Update balance
         const result = await db.query(
             'UPDATE users SET balance = $1 WHERE id = $2 RETURNING *',
             [newBalance, id]
